@@ -9,7 +9,7 @@ const LeftSlider = ({ current }) => {
           <ul>
           {/* <div className="li-block"></div> */}
 
-            {Array(3)
+            {Array(5)
               .fill(1)
               .map((x, i) => (
                 <>

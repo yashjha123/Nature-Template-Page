@@ -153,7 +153,7 @@ body {
 }
 
 .start-1 {
-  left: 53px;
+  left: 90px;
 }
 
 .snav > ul {
@@ -222,6 +222,11 @@ h2 > l {
   color: white;
   text-align: left;
   padding: 50px;
+  cursor: pointer;
+}
+.sdx:hover{
+  background-color: white;
+  color: black;
 }
 @media (max-width: 576px) {
   .snav > ul {
@@ -257,4 +262,18 @@ h2 > l {
   .search-b {
     width: 100% !important;
   }
+}
+
+.backgroundFilter{
+  backdrop-filter: blur(20px);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: backdrop-filter 1s;
+}
+.backgroundFilter.transActive{
+  backdrop-filter: blur(5px);
+
 }

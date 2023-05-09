@@ -10,7 +10,7 @@ import Section from "./components/Section";
 function App({ ind, setInd }) {
   const [offset, setOffset] = useState(0);
   const index = useRef(ind);
-
+  const nslides = 5;
   const setIndex = (val) => {
     index.current = val;
     setInd(val);
@@ -32,21 +32,13 @@ function App({ ind, setInd }) {
         return false;
       }
       if (Delta == 1) {
-        if (index.current >= 2) {
-          setIndex(3 - 1);
-        } else {
-          setIndex(index.current + 1);
-        }
+        nextSlide()
       } else {
-        if (index.current < 1) {
-          setIndex(0);
-        } else {
-          setIndex(index.current - 1);
-        }
+        prevSlide()
       }
 
       isAnimating = true;
-      setTimeout(() => (isAnimating = false), 0.2 * 1000);
+      setTimeout(() => (isAnimating = false), 0.5 * 1000);
       return false;
     };
 
@@ -67,20 +59,26 @@ function App({ ind, setInd }) {
     swipeDuration: Infinity, // allowable duration of a swipe (ms). *See Notes*
     touchEventOptions: { passive: true }, // options for touch listeners (*See Details*)
   };
+  const nextSlide = ()=>{
+    if (index.current >= nslides - 1) {
+      setIndex(nslides - 1);
+    } else {
+      setIndex(index.current + 1);
+    }
+  }
+  const prevSlide = ()=>{
+    if (index.current < 1) {
+      setIndex(0);
+    } else {
+      setIndex(index.current - 1);
+    }
+  }
   const handlers = useSwipeable({
     onSwipedUp: (eventData) => {
-      if (index.current >= 2) {
-        setIndex(3 - 1);
-      } else {
-        setIndex(index.current + 1);
-      }
+      nextSlide()
     },
     onSwipedDown: (eventData)=>{
-      if (index.current < 1) {
-        setIndex(0);
-      } else {
-        setIndex(index.current - 1);
-      }
+      prevSlide()
     },
     ...config,
   });
@@ -101,8 +99,8 @@ function App({ ind, setInd }) {
         current={index.current}
         txtcolor="white"
         bgcolor="white"
-        label="Where flowers bloom so does hope."
-        bgImage="images/img.jpg"
+        label="Harmonize with Nature's Flow: Unleash your Potential."
+        bgImage="images/image6.jpg"
       />
 
       <Section
@@ -112,8 +110,24 @@ function App({ ind, setInd }) {
         label="Sometimes, nature is all you need."
         bgImage="images/image2.jpeg"
       />
+
+      <Section
+        index={3}
+        current={index.current}
+        txtcolor="white"
+        label="Embrace Nature's Rhythm: Find Your Inner Balance."
+        bgImage="images/img.jpg"
+      />
+
+      <Section
+        index={4}
+        current={index.current}
+        txtcolor="white"
+        label="Sync with Nature's Pulse: Awaken your True Essence."
+        bgImage="images/image7.jpg"
+      />
       <Footer />
-      <ContextBox />
+      <ContextBox next={nextSlide} prev={prevSlide} />
     </div>
   );
 }

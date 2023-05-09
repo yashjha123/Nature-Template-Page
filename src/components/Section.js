@@ -23,15 +23,19 @@ const Section = ({
         backgroundImage: `url(${bgImage})`,
       }}
     >
+        <div className={`backgroundFilter ${index < current ? "transCover" : ""} ${
+        index == current ? "transActive" : ""
+      }`}>
       <Container>
-        <div className="hero-content">
-          <b><h2><l>{`${index+1}`}</l><sup>/3</sup></h2></b>
-          <div className="hero-base">
-          <h1 className="hero-title">{label}</h1>
-          Nature always wear the colour of spirit.
+          <div className="hero-content">
+            <b><h2><l>{`${index+1}`}</l><sup>/5</sup></h2></b>
+            <div className="hero-base">
+            <h1 className="hero-title">{label}</h1>
+            Nature always wear the colour of spirit.
+            </div>
           </div>
-        </div>
       </Container>
+        </div>
     </div>
   );
 };
